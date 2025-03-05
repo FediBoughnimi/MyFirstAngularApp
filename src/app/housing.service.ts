@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,14 +19,16 @@ export class HousingService {
   }
 
   createHousing(housing: any): Observable<any> {
-    return this.http.post(this.apiUrl, housing);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(this.apiUrl, housing, { headers });
   }
 
   updateHousing(id: number, housing: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, housing);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put<any>(`${this.apiUrl}/${id}`, housing, { headers });
   }
 
   deleteHousing(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 }
