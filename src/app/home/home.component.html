@@ -1,0 +1,12 @@
+<h1>Liste des Logements</h1>
+<button (click)="navigateToCreate()">Créer un Logement</button> <!-- Utilisez (click) -->
+<div class="housing-container">
+  <div *ngFor="let housing of housingList" class="housing-card">
+    <img [src]="housing.image" [alt]="housing.name" class="housing-image">
+    <div class="housing-details">
+      <h2>{{ housing.name }}</h2>
+      <p><strong>Location:</strong> {{ housing.location }}</p>
+      <p><strong>Price:</strong> {{ housing.price }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+.housing-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .housing-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .housing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .housing-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .housing-details {
+    padding: 16px;
+  }
+  
+  .housing-details h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .housing-details p {
+    margin: 8px 0;
+    color: #555;
+  }
+  
+  /*button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }*/
