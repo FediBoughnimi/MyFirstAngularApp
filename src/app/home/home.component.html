@@ -1,12 +1,22 @@
-<h1>Liste des Logements</h1>
-<button (click)="navigateToCreate()">Créer un Logement</button> <!-- Utilisez (click) -->
-<div class="housing-container">
-  <div *ngFor="let housing of housingList" class="housing-card">
-    <img [src]="housing.image" [alt]="housing.name" class="housing-image">
-    <div class="housing-details">
-      <h2>{{ housing.name }}</h2>
-      <p><strong>Location:</strong> {{ housing.location }}</p>
-      <p><strong>Price:</strong> {{ housing.price }}</p>
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Liste des Logements</h1>
+  <div class="text-center mb-4">
+    <button class="btn btn-primary" (click)="navigateToCreate()">Créer un Logement</button>
+  </div>
+  <div class="row">
+    <div *ngFor="let housing of housingList" class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img [src]="housing.image" [alt]="housing.name" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ housing.name }}</h5>
+          <p class="card-text"><strong>Location:</strong> {{ housing.location }}</p>
+          <p class="card-text"><strong>Price:</strong> {{ housing.price }}</p>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-warning me-2" [routerLink]="['/edit', housing.id]">Modifier</button>
+          <button class="btn btn-danger" (click)="deleteHousing(housing.id)">Supprimer</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HousingService } from '../housing.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,7 +13,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class HousingFormComponent {
   housingForm: FormGroup;
-  sEditMode: any;
 
   constructor(
     private fb: FormBuilder,
@@ -21,22 +20,28 @@ export class HousingFormComponent {
     private router: Router
   ) {
     this.housingForm = this.fb.group({
-      name: [''],
-      image: [''],
-      location: [''],
-      price: ['']
+      name: ['', Validators.required],
+      image: ['', Validators.required],
+      location: ['', Validators.required],
+      price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]]
     });
   }
 
   onSubmit() {
-    this.housingService.createHousing(this.housingForm.value).subscribe({
-      next: () => {
-        this.router.navigate(['/']); // Rediriger vers la liste des logements après la création
-      },
-      error: (err) => {
-        console.error('Erreur lors de la création du logement :', err);
-      }
-    });
+    if (this.housingForm.valid) {
+      const formValues = { ...this.housingForm.value, price: String(this.housingForm.value.price) };
+      console.log('Form Values:', formValues);
+
+      this.housingService.createHousing(formValues).subscribe({
+        next: () => {
+          this.router.navigate(['/']); // Rediriger vers la liste des logements après la création
+        },
+        error: (err) => {
+          console.error('Erreur lors de la création du logement :', err);
+        }
+      });
+    } else {
+      console.error('Formulaire invalide', this.housingForm.errors);
+    }
   }
 }
-

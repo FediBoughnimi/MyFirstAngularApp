@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class HousingService {
   private apiUrl = 'http://localhost:5156/api/Housing';
-  //private apiUrl = 'https://localhost:7120/api/housing';
+
   constructor(private http: HttpClient) {}
 
   getHousings(): Observable<any[]> {
